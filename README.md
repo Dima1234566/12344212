@@ -4,7 +4,7 @@
 
 using namespace std;
 
-class cars
+class cars // маємо клас машини
 {
 public:
 	virtual void out() = 0;
@@ -17,10 +17,10 @@ public:
 
 
 
-	void basicInfo()
+	void basicInfo()   // вводим що вони мають і що наступні об*єкти унаслідують
 	{
-		cout << "- вага: " << weight << endl;
-		cout << "- кiлькiсть мiсць: " << seats << endl;
+		cout << ".....вага: " << weight << endl; 
+		cout << ".....кiлькiсть мiсць: " << seats << endl;
 	}
 
 
@@ -37,18 +37,18 @@ public:
 
 
 
-class car : public cars
+class car : public cars   // дочірній клас машина
 {
 public:
 		int price;
 
 
 		void get() {
-			cout << "Вага: ";
+			cout << ".....Вага: ";
 			cin >> weight;
-			cout << "Кiлькiсть мiсць: ";
+			cout << ".....Кiлькiсть мiсць: ";
 			cin >> seats;
-			cout << "Цiна: ";
+			cout << ".....Цiна: ";
 			cin >> price;
 
 
@@ -56,18 +56,18 @@ public:
 };
 
 
-class gromTransp : public cars
+class Public transport : public cars  // дочірній клас громадський транспорт
 {
 public:
 	int power;
 
 
 	void get() {
-		cout << "Вага: ";
+		cout << ".....Вага: ";
 		cin >> weight;
-		cout << "Кiлькiсть мiсць: ";
+		cout << ".....Кiлькiсть мiсць: ";
 		cin >> seats;
-		cout << "Кіньські сили: ";
+		cout << ".....Кіньські сили: ";
 		cin >> power;
 
 
@@ -75,93 +75,93 @@ public:
 };
 
 
-class vantagn : public car
+class cargo : public car   // дочірній клас має підкласи..
 {
 public:
 	void out()
 	{
-		cout << "- цiна: " << price;
+		cout << "..... цiна: " << price;
 	}
 };
 
 
-class zvuchayna : public car
+class Redwood : public car   //   які мають однакову..
 {
 public:
 	void out()
 	{
-		cout << "- цiна: " << price;
+		cout << "..... цiна: " << price;
 	}
 };
 
 
-class lehkova : public car
+class automobile : public car   //характеристику
 {
 public:
 	void out()
 	{
-		cout << "- цiна: " << price;
+		cout << "..... цiна: " << price;
 	}
 };
 
 
 
-
-class bas : public gromTransp
-
-{
-public:
-	void out()
-	{
-		cout << "- потужність: " << power;
-	}
-
-
-};
-
-
-class tramv : public gromTransp
+// інший дочірній клас зі своїми підкласами
+class bas : public Public transport   
 
 {
 public:
 	void out()
 	{
-		cout << "- потужність: " << power;
+		cout << "..... потужність: " << power;
 	}
 
 
 };
 
 
-class troleyb : public gromTransp
+class tram : public Public transport
 
 {
 public:
 	void out()
 	{
-		cout << "- потужність: " << power;
+		cout << "..... потужність: " << power;
 	}
 
 
 };
 
+
+class trolleybus : public Public transport
+
+{
+public:
+	void out()
+	{
+		cout << "..... потужність: " << power;
+	}
+
+
+};
+// далі вивід
 int main()
 {
 	int S;
 	setlocale(LC_ALL, "Russian");
 
 
-	cars *mas[10];
+	cars *ez[10];
+ //шлях до підкласів класу
 
+	ez[1] = new cargo;
+	ez[2] = new Redwood;
+	ez[3] = new automobile;
+	ez[4] = new bas;
+	ez[5] = new tram;
+	ez[6] = new trolleybus;
 
-	mas[1] = new vantagn;
-	mas[2] = new zvuchayna;
-	mas[3] = new lehkova;
-	mas[4] = new bas;
-	mas[5] = new tramv;
-	mas[6] = new troleyb;
-
-	cout << "Машини: \n";
+	cout << " ...... Машини...... \n";
 	cout << "1. Вантажний автомобіль\n";
 	cout << "2. Автомобіль\n";
 	cout << "3. Легковий автомобіль\n";
@@ -173,13 +173,13 @@ int main()
 	cin >> S;
 	cout << endl;
 
-
-	mas[S]->get();
+    // вибір об*єкта наслідування
+	ez[S]->get();
 	cout << endl;
+ // вивід
 
-
-	mas[S]->basicInfo();
-	mas[S]->out();
+	ez[S]->basicInfo();
+	ez[S]->out();
 	_getch();
 	return 0;
 }
